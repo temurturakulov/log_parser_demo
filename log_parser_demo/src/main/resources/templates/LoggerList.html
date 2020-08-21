@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Logs</title>
+    <!-- Подключаем Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div th:switch="${logs}">
+    <h2 th:case="null">No logs found!</h2>
+    <div th:case="*">
+        <h2>Logs</h2>
+        <p><a href="/Logger-Create" class="btn btn-primary">Create</a></p>
+        <table class="table">
+            <thread>
+                <tr>
+                    <td>Created</td>
+                    <td>Provider</td>
+                    <td>Level</td>
+                    <td>Message</td>
+                </tr>
+            </thread>
+            <tbody>
+            <tr th:each="log : ${logs}">
+                <td th:text="${log.created}"></td>
+                <td th:text="${log.provider}"></td>
+                <td th:text="${log.level}"></td>
+                <td th:text="${log.message}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
